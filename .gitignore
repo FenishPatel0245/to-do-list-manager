@@ -51,3 +51,4 @@ Module.symvers
 Mkfile.old
 dkms.conf
 /todolist/.vs/todolist/FileContentIndex/20acdac6-d265-4f4a-954e-292c24e44e14.vsidx
+/.vs
