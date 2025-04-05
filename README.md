@@ -70,3 +70,15 @@ I have added the following things in todolist.c (source file)
    - Minutes are between 0 and 59
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Darshita/Date:2025-04-05 : 
+
+I have added the following things in todolist.c (source file) 
+
+4. input validator for integer (get_integer_nput)
+
+- Shows a custom prompt to the user.
+- Accepts only integer input.
+- Keeps asking until the input is within the range [min, max].
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
