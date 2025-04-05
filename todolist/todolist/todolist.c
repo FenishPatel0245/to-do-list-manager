@@ -169,3 +169,27 @@ void load_tasks()
 
     fclose(file); // Close the file
 }
+// Function to save tasks to a file
+
+void save_tasks()
+{
+	FILE* file = fopen(FILENAME, "w");  // Open the file in write mode
+    if (!file)
+    {
+        printf("Error saving tasks!\n");
+        return;
+    }
+
+	// Write tasks to the file
+    for (int i = 0; i < taskCount; i++) 
+    {
+        fprintf(file, "%s\n%s %s %d %d\n",
+            tasks[i].description,
+            tasks[i].date,
+            tasks[i].time,
+            tasks[i].priority,
+            tasks[i].done);
+    }
+
+	fclose(file); // Close the file
+}
