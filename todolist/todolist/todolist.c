@@ -108,3 +108,33 @@ int validate_time(const char* time)
 
     return 1;
 }
+
+// Function to get a valid integer input from the user within a specific range
+int get_integer_input(const char* prompt, int min, int max)
+{
+	int value;  // declaring variable for user input
+
+    while (1)
+    {
+        
+        printf("%s", prompt);
+
+        
+        if (scanf("%d", &value) == 1)
+        {
+            
+            if (value >= min && value <= max)
+            {
+                break; 
+            }
+        }
+
+        
+        printf("Invalid input! Please enter a number between %d and %d.\n", min, max);  
+
+        
+		while (getchar() != '\n'); // clear the input buffer
+    }
+
+    return value; 
+}
