@@ -20,7 +20,7 @@ Tasks are saved in a file tasks.txt.
 The program is capable of storing up to 100 tasks.  
 This part of the code sets up the task structure and storage.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Name:Pratham/Date:2025-04-05 : 
 
@@ -48,6 +48,25 @@ Function Declaration:
 - sort_tasks_by_priority() – Sort tasks by priority.
 - sort_tasks_by_date() – Sort tasks by date.
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Name:Fenish/Date:2025-04-05 : 
 
+I have added the following things in todolist.c (source file) 
 
+1. Header Printer (print_header)
+   - Make a title with lines above and below it.
+   - Makes menus and messages easier to read.
+
+2. Date Validator (validate_date)
+   - Checks if the date is in the correct format: YYYY-MM-DD
+   - Year is between 2000 and 2100
+   - Month is between 1 and 12
+   - Day is between 1 and 31
+
+3. Time Validator (validate_time)
+   - Checks if the time is in the correct format: HH:MM
+   - Hours are between 0 and 23
+   - Minutes are between 0 and 59
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
