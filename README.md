@@ -82,3 +82,17 @@ I have added the following things in todolist.c (source file)
 - Keeps asking until the input is within the range [min, max].
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Pratham/Date:2025-04-05 : 
+
+I have added the following features in todolist.h (header file) 
+
+5. input validator for load tasks
+   
+- Opens the file tasks.txt in *read mode*.
+- Reads task details line by line and stores them in the tasks[] array.
+- Stops reading when:
+  - It reaches the end of the file, or
+  - It hits the maximum allowed tasks (MAX_TASKS).
+
+
