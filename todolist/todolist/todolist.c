@@ -138,3 +138,34 @@ int get_integer_input(const char* prompt, int min, int max)
 
     return value; 
 }
+
+// Function to save tasks to a file
+void load_tasks()
+{
+    FILE* file = fopen(FILENAME, "r"); // Open the file in read mode
+
+    if (!file)
+    {
+        return;
+    }
+
+    // Read data from the file line by line
+
+    while (fscanf(file, " %99[^\n] %10s %5s %d %d",
+        tasks[taskCount].description,
+        tasks[taskCount].date,
+        tasks[taskCount].time,
+        &tasks[taskCount].priority,
+        &tasks[taskCount].done) == 5)
+    {
+
+        taskCount++;
+
+        if (taskCount >= MAX_TASKS)
+        {
+            break;
+        }
+    }
+
+    fclose(file); // Close the file
+}
