@@ -91,7 +91,7 @@ int validate_time(const char* time)
 
 	int hour, minute; // declaring variables for hour and minute
 
-    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2)
+    if (scanf(time, "%2d:%2d", &hour, &minute) != 2)
     {
         return 0; 
     }
@@ -192,4 +192,50 @@ void save_tasks()
     }
 
     fclose(file); // Close the file
+}
+
+// Function to add a new task
+void add_task()
+{
+    if (taskCount >= MAX_TASKS)
+    {
+        printf("Task list is full!\n");
+        return;
+    }
+
+	Task newTask;                  // Create a new task
+
+    getchar();                           // Clear newline from previous input
+
+    printf("Enter task description: ");
+
+    fgets(newTask.description, sizeof(newTask.description), stdin);
+
+    newTask.description[strcspn(newTask.description, "\n")] = 0;
+
+    do
+    {
+        printf("Enter due date (YYYY-MM-DD): ");
+
+        scanf("%10s", newTask.date);
+    }
+    while (!validate_date(newTask.date));
+
+    do
+    {
+        printf("Enter due time (HH:MM): ");
+
+        scanf("%5s", newTask.time);
+    }
+    while (!validate_time(newTask.time));
+
+	newTask.priority = get_integer_input("Enter priority (1-5, 5 is highest): ", 1, 5);   // Get priority input
+
+    newTask.done = 0;
+
+	tasks[taskCount++] = newTask; // Add the new task to the array
+
+	save_tasks();      // Save tasks to file
+
+	printf("Task added successfully!\n");   // Print success message
 }
