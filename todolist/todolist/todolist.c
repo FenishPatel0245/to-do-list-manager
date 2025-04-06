@@ -193,3 +193,27 @@ void save_tasks()
 
     fclose(file); // Close the file
 }
+// Function to add a new task
+
+void view_tasks()
+{
+	if (taskCount == 0) // Check if there are no tasks
+	
+    {
+        printf("No tasks available.\n");
+        return;
+    }
+
+    printf("\n==== To-Do List ====\n");
+
+    for (int i = 0; i < taskCount; i++) 
+
+        printf("%d. [%s] %s (Due: %s %s) - Priority: %d\n",
+            i + 1,
+			tasks[i].done ? "X" : " ",   // maeking the task done
+            tasks[i].description,
+            tasks[i].date,
+            tasks[i].time,
+            tasks[i].priority);
+    }
+}
