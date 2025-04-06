@@ -69,4 +69,46 @@ I have added the following things in todolist.c (source file)
    - Hours are between 0 and 23
    - Minutes are between 0 and 59
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Darshita/Date:2025-04-05 : 
+
+I have added the following things in todolist.c (source file) 
+
+4. input validator for integer (get_integer_nput)
+
+- Shows a custom prompt to the user.
+- Accepts only integer input.
+- Keeps asking until the input is within the range [min, max].
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Pratham/Date:2025-04-05 : 
+
+I have added the following features in todolist.h (header file) 
+
+5.  for (load_tasks)
+   
+- Opens the file tasks.txt in read mode.
+- Reads task details line by line and stores them in the tasks[] array.
+- Stops reading when:
+  - It reaches the end of the file, or
+  - It hits the maximum allowed tasks (MAX_TASKS).
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Fenish/Date:2025-04-05 : 
+
+I have added the following things in todolist.c (source file) 
+
+6. adding (save_tasks)
+
+- Opens the file tasks.txt in write mode.
+- Goes through all tasks stored in the program.
+- 
+- Writes each task's details to the file:
+  - Description
+  - Date 
+  - Time 
+  - Priority
+  - checking if task is done or not
