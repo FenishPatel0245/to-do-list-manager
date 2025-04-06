@@ -131,4 +131,20 @@ I have added the following things in todolist.c (source file)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Name:Fenish/Date:2025-04-06 : 
 
+I have added the following things in todolist.c (source file) 
+
+8. adding (view_tasks)
+
+- Displays all current tasks in the list.
+- If there are no tasks, it shows a message.
+  
+- Each task shows:
+  - Number
+  - Done status ([X] if completed, [ ] if not)
+  - Description
+  - Due date and time
+  - Priority
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
