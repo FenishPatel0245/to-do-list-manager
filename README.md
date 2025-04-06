@@ -112,3 +112,23 @@ I have added the following things in todolist.c (source file)
   - Time 
   - Priority
   - checking if task is done or not
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Darshita/Date:2025-04-06 : 
+
+I have added the following things in todolist.c (source file) 
+
+7. adding function: (add_task)
+
+- Asks the user for:
+  - Task description
+  - Due date 
+  - Due time 
+  - Priority 
+- Automatically sets the task as *not done*.
+- Saves the new task into the array and writes it to the file.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
