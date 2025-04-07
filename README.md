@@ -85,7 +85,7 @@ I have added the following things in todolist.c (source file)
 
 Name:Pratham/Date:2025-04-05 : 
 
-I have added the following features in todolist.h (header file) 
+I have added the following things in todolist.c (source file) 
 
 5.  for (load_tasks)
    
@@ -148,3 +148,14 @@ I have added the following things in todolist.c (source file)
   - Priority
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Pratham/Date:2025-04-06 : 
+
+I have added the following things in todolist.c (source file) 
+
+9. adding (sort_tasks_by_priority)
+
+- Compares the priority of each task.
+- Swaps tasks so that higher-priority ones come first.
+
+
