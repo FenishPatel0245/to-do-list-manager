@@ -167,5 +167,19 @@ I have added the following things in todolist.c (source file)
 9. adding (mark_task_completed)
 
 - First shows all current tasks using view_tasks()
--   Asks the user to choose a task number.
+- Asks the user to choose a task number.
 - Updates the task file using save_tasks().
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Darshita/Date:2025-04-07 : 
+
+I have added the following things in todolist.c (source file) 
+
+10. adding (sort_tasks_by_date)
+
+- Compares dates as strings.
+- Earlier dates come before later ones.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
