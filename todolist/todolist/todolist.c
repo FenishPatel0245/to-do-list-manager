@@ -263,3 +263,21 @@ void view_tasks()
             tasks[i].time,
 			tasks[i].priority); // adding priority to the task
 }
+
+// Sort tasks by priority (5 is highest)
+void sort_tasks_by_priority()
+{
+    for (int i = 0; i < taskCount - 1; i++)
+    {
+        for (int j = 0; j < taskCount - i - 1; j++)
+        {
+            if (tasks[j].priority < tasks[j + 1].priority)
+            {
+                // Swap the tasks
+                Task temp = tasks[j];
+                tasks[j] = tasks[j + 1];
+                tasks[j + 1] = temp;
+            }
+        }
+    }
+}
