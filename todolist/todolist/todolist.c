@@ -281,3 +281,21 @@ void sort_tasks_by_priority()
         }
     }
 }
+// Mark a task as completed
+
+void mark_task_completed()
+{
+    view_tasks(); 
+
+    if (taskCount == 0)
+
+        return;
+
+    int taskNumber = get_integer_input("Enter task number to mark as completed: ", 1, taskCount);
+
+    tasks[taskNumber - 1].done = 1;
+
+    save_tasks();
+
+    printf("Task marked as completed!\n");
+}
