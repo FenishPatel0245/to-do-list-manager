@@ -193,3 +193,73 @@ void save_tasks()
 
     fclose(file); // Close the file
 }
+
+// Function to add a new task
+void add_task()
+{
+    if (taskCount >= MAX_TASKS)
+    {
+        printf("Task list is full!\n");
+        return;
+    }
+
+    Task newTask;                  // Create a new task
+
+    getchar();                           // Clear newline from previous input
+
+    printf("Enter task description: ");
+
+    fgets(newTask.description, sizeof(newTask.description), stdin);
+
+    newTask.description[strcspn(newTask.description, "\n")] = 0;
+
+    do
+    {
+        printf("Enter due date (YYYY-MM-DD): ");
+
+        scanf("%10s", newTask.date);
+    }
+    while (!validate_date(newTask.date));
+
+    do
+    {
+        printf("Enter due time (HH:MM): ");
+
+        scanf("%5s", newTask.time);
+    } 
+    while (!validate_time(newTask.time));
+
+    newTask.priority = get_integer_input("Enter priority (1-5, 5 is highest): ", 1, 5);   // Get priority input
+
+    newTask.done = 0;
+
+    tasks[taskCount++] = newTask; // Add the new task to the array
+
+    save_tasks();      // Save tasks to file
+
+    printf("Task added successfully!\n");   // Print success message
+}
+
+// Function to add a new task
+
+void view_tasks()
+{
+    if (taskCount == 0) // Check if there are no tasks
+
+    {
+        printf("No tasks available.\n");
+        return;
+    }
+
+    printf("\n==== To-Do List ====\n");
+
+    for (int i = 0; i < taskCount; i++)
+
+        printf("%d. [%s] %s (Due: %s %s) - Priority: %d\n",
+            i + 1,
+            tasks[i].done ? "X" : " ",   // maeking the task done
+            tasks[i].description,
+            tasks[i].date,
+            tasks[i].time,
+			tasks[i].priority); // adding priority to the task
+}
