@@ -299,3 +299,20 @@ void mark_task_completed()
 
     printf("Task marked as completed!\n");
 }
+
+// Function to search for a task by description
+void sort_tasks_by_date()
+{
+    for (int i = 0; i < taskCount - 1; i++)
+    {
+        for (int j = 0; j < taskCount - i - 1; j++)
+        {
+			if (strcmp(tasks[j].date, tasks[j + 1].date) > 0)  // swapping the tasks
+            {
+                Task temp = tasks[j];
+                tasks[j] = tasks[j + 1];
+                tasks[j + 1] = temp;
+            }
+        }
+    }
+}
