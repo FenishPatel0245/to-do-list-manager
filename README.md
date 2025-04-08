@@ -183,3 +183,11 @@ I have added the following things in todolist.c (source file)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
+Name:Pratham/Date:2025-04-07 : 
+
+I have added the following things in todolist.c (source file) 
+
+11. adding (search_task)
+
+- Prompts the user to enter a keyword.
+- Looks through all tasks to find matches in the description.
