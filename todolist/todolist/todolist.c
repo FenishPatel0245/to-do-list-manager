@@ -316,3 +316,36 @@ void sort_tasks_by_date()
         }
     }
 }
+
+void search_task()
+{
+    char keyword[100];
+
+    getchar();
+    printf("Enter keyword to search: ");               
+    fgets(keyword, sizeof(keyword), stdin);
+    keyword[strcspn(keyword, "\n")] = 0;
+
+    printf("\n==== Search Results ====\n");
+
+    int found = 0;
+
+    for (int i = 0; i < taskCount; i++)
+    {
+        if (strstr(tasks[i].description, keyword))
+        {
+            printf("%d. %s (Due: %s %s) - Priority: %d\n",
+                i + 1,
+                tasks[i].description,
+                tasks[i].date,
+                tasks[i].time,
+                tasks[i].priority);
+            found = 1;
+        }
+    }
+
+    if (!found)
+    {
+        printf("No tasks found with that keyword.\n");
+    }
+}
