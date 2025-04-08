@@ -214,3 +214,14 @@ I have added the following things in main.c (main file)
 -Continuously displays a user-friendly menu
 -Calls appropriate functions based on user selection (Add, View, Search, Delete, etc.)
 -Clean exit on choosing option 8
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Darshita/Date:2025-04-08 : 
+
+I have added the following things in todolist.c (source file) 
+
+13. Adding (print_menu)
+    
+-Clearly lists available task management options
+-Enhances user navigation with a clean and organized layout
