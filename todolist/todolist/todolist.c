@@ -352,4 +352,3 @@ void search_task()
         printf("No tasks found with that keyword.\n");
     }
 }
-
