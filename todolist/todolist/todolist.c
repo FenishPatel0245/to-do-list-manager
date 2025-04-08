@@ -355,7 +355,7 @@ void search_task()
 
 void delete_task()
 {
-    view_tasks();
+    view_tasks(); //function
 
     if (taskCount == 0)
         return;
