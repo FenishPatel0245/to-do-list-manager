@@ -316,14 +316,17 @@ void sort_tasks_by_date()
         }
     }
 }
-
+// Function to view tasks by date
 void search_task()
 {
     char keyword[100];
 
     getchar();
-    printf("Enter keyword to search: ");               
+
+    printf("Enter keyword to search: ");   
+
     fgets(keyword, sizeof(keyword), stdin);
+
     keyword[strcspn(keyword, "\n")] = 0;
 
     printf("\n==== Search Results ====\n");
