@@ -352,3 +352,24 @@ void search_task()
         printf("No tasks found with that keyword.\n");
     }
 }
+
+void delete_task()
+{
+    view_tasks();
+
+    if (taskCount == 0)
+        return;
+
+    int taskNumber = get_integer_input("Enter task number to delete: ", 1, taskCount);
+
+    for (int i = taskNumber - 1; i < taskCount - 1; i++)
+    {
+        tasks[i] = tasks[i + 1];
+    }
+
+    taskCount--;
+
+    save_tasks();
+
+    printf("Task deleted successfully!\n");
+}

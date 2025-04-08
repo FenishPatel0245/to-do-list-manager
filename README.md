@@ -205,3 +205,12 @@ I have added the following things in todolist.c (source file)
 -Displays a success message upon completion.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+Name:Fenish/Date:2025-04-08 : 
+
+I have added the following things in main.c (main file) 
+
+-Loads tasks at startup
+-Continuously displays a user-friendly menu
+-Calls appropriate functions based on user selection (Add, View, Search, Delete, etc.)
+-Clean exit on choosing option 8
