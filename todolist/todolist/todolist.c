@@ -319,7 +319,7 @@ void sort_tasks_by_date()
 // Function to view tasks by date
 void search_task()
 {
-    char keyword[100];
+	char keyword[100];         // Create a buffer for the keyword
 
     getchar();
 
@@ -355,7 +355,7 @@ void search_task()
 
 void delete_task()
 {
-    view_tasks(); //func
+    view_tasks();
 
     if (taskCount == 0)
         return;

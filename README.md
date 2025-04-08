@@ -191,3 +191,17 @@ I have added the following things in todolist.c (source file)
 
 - Prompts the user to enter a keyword.
 - Looks through all tasks to find matches in the description.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+Name:Pratham/Date:2025-04-08 : 
+
+I have added the following things in todolist.c (source file) 
+
+12. adding (delete_task)
+
+-Shifts tasks after deletion to maintain list integrity
+-Automatically saves the updated task list
+-Displays a success message upon completion.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
