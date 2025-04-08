@@ -373,3 +373,17 @@ void delete_task()
 
     printf("Task deleted successfully!\n");
 }
+
+// Function to print the main menu
+void print_menu()
+{
+    print_header("TO-DO LIST MANAGER");
+    printf("1. Add Task\n");
+    printf("2. View Tasks\n");
+    printf("3. View Tasks by Priority\n");
+    printf("4. View Tasks by Date\n");
+    printf("5. Mark Task as Completed\n");
+    printf("6. Search Task\n");
+    printf("7. Delete Task\n");
+    printf("8. Exit\n");
+}
