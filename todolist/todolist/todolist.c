@@ -331,7 +331,7 @@ void search_task()
 
     printf("\n==== Search Results ====\n");
 
-    int found = 0;
+	int found = 0;   //flag to check if any tasks are found
 
     for (int i = 0; i < taskCount; i++)
     {
