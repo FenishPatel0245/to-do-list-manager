@@ -319,7 +319,7 @@ void sort_tasks_by_date()
 // Function to view tasks by date
 void search_task()
 {
-    char keyword[100];
+	char keyword[100];         // Create a buffer for the keyword
 
     getchar();
 
@@ -352,3 +352,4 @@ void search_task()
         printf("No tasks found with that keyword.\n");
     }
 }
+
