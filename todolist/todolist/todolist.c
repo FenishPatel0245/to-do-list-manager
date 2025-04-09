@@ -22,43 +22,52 @@ void print_header(const char* title)
 
 int validate_date(const char* date)
 {
-    if (strlen(date) != 10 || date[4] != '-' || date[7] != '-') // ckecking user input
+    if (strlen(date) != 10 || !(date[4] == '-' || date[4] == '/') || !(date[7] == '-' || date[7] == '/'))
     {
+        printf("Invalid date format! Please use YYYY-MM-DD or YYYY/MM/DD (e.g., 2025-04-09).\n");
         return 0;
     }
 
-    for (int i = 0; i < 10; i++)
+    char sep = date[4];
+
+    if (date[7] != sep)
     {
-        if (i == 4 || i == 7)
-        {
-            continue;
-        }
-
-        if (!isdigit(date[i]))
-        {
-            return 0;
-        }
-    }
-
-    int year, month, day; // declaring variables for year, month and day
-
-    if (sscanf(date, "%d-%d-%d", &year, &month, &day) != 3)
-    {
+        printf("Inconsistent separators! Use the same separator throughout (either '-' or '/').\n");
         return 0;
     }
+
+    char year_str[5], month_str[3], day_str[3];
+    strncpy(year_str, date, 4); year_str[4] = '\0';
+    strncpy(month_str, date + 5, 2); month_str[2] = '\0';
+    strncpy(day_str, date + 8, 2); day_str[2] = '\0';
+
+    if (!isdigit(year_str[0]) || !isdigit(year_str[1]) || !isdigit(year_str[2]) || !isdigit(year_str[3]) ||
+        !isdigit(month_str[0]) || !isdigit(month_str[1]) ||
+        !isdigit(day_str[0]) || !isdigit(day_str[1]))
+    {
+        printf("Date must contain only numbers. Example: 2025-04-09 or 2025/04/09.\n");
+        return 0;
+    }
+
+    int year = atoi(year_str);
+    int month = atoi(month_str);
+    int day = atoi(day_str);
 
     if (year < 2000 || year > 2100)
     {
+        printf("Year must be between 2000 and 2100.\n");
         return 0;
     }
 
     if (month < 1 || month > 12)
     {
+        printf("Month must be between 1 and 12.\n");
         return 0;
     }
 
     if (day < 1 || day > 31)
     {
+        printf("Day must be between 1 and 31.\n");
         return 0;
     }
 
