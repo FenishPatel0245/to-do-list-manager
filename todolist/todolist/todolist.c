@@ -371,19 +371,16 @@ void delete_task()
 
     printf("Task deleted successfully!\n");
 }
+// In todolist.c
 
-// Function to view tasks by priority
-
-void view_tasks_by_priority() 
+void view_tasks_by_priority()
 {
-
+    // TODO: Add code to view tasks sorted by priority
     printf("Viewing tasks by priority...\n");
 }
 
-// Function to view tasks by date
-
-void view_tasks_by_date()
-{
+void view_tasks_by_date() {
+    // TODO: Add code to view tasks sorted by date
     printf("Viewing tasks by date...\n");
 }
 
