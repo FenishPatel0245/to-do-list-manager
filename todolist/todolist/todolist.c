@@ -78,40 +78,44 @@ int validate_date(const char* date)
 
 int validate_time(const char* time)
 {
-
-    if (strlen(time) != 5 || time[2] != ':') // checking user input
+    // Check length and position of colon
+    if (strlen(time) != 5 || time[2] != ':')
     {
+        printf("Invalid time format! Please use 24-hour format HH:MM (e.g., 14:30).\n");
         return 0;
     }
 
-
+    // Check that all characters (except colon) are digits
     for (int i = 0; i < 5; i++)
     {
         if (i == 2)
-        {
             continue;
-        }
 
         if (!isdigit(time[i]))
         {
+            printf("Time must contain only digits and a colon. Example: 09:45 or 23:00.\n");
             return 0;
         }
     }
 
-    int hour, minute; // declaring variables for hour and minute
-
-    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2) // <-- FIXED LINE
+    // Extract hour and minute values
+    int hour, minute;
+    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2)
     {
+        printf("Failed to parse time. Please use format HH:MM (24-hour).\n");
         return 0;
     }
 
+    // Validate hour and minute ranges
     if (hour < 0 || hour > 23)
     {
+        printf("Hour must be between 0 and 23.\n");
         return 0;
     }
 
     if (minute < 0 || minute > 59)
     {
+        printf("Minutes must be between 0 and 59.\n");
         return 0;
     }
 
