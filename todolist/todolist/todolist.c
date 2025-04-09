@@ -22,43 +22,52 @@ void print_header(const char* title)
 
 int validate_date(const char* date)
 {
-    if (strlen(date) != 10 || date[4] != '-' || date[7] != '-') // ckecking user input
+    if (strlen(date) != 10 || !(date[4] == '-' || date[4] == '/') || !(date[7] == '-' || date[7] == '/'))
     {
+        printf("Invalid date format! Please use YYYY-MM-DD or YYYY/MM/DD (e.g., 2025-04-09).\n");
         return 0;
     }
 
-    for (int i = 0; i < 10; i++)
+    char sep = date[4];
+
+    if (date[7] != sep)
     {
-        if (i == 4 || i == 7)
-        {
-            continue;
-        }
-
-        if (!isdigit(date[i]))
-        {
-            return 0;
-        }
-    }
-
-    int year, month, day; // declaring variables for year, month and day
-
-    if (sscanf(date, "%d-%d-%d", &year, &month, &day) != 3)
-    {
+        printf("Inconsistent separators! Use the same separator throughout (either '-' or '/').\n");
         return 0;
     }
+
+    char year_str[5], month_str[3], day_str[3];
+    strncpy(year_str, date, 4); year_str[4] = '\0';
+    strncpy(month_str, date + 5, 2); month_str[2] = '\0';
+    strncpy(day_str, date + 8, 2); day_str[2] = '\0';
+
+    if (!isdigit(year_str[0]) || !isdigit(year_str[1]) || !isdigit(year_str[2]) || !isdigit(year_str[3]) ||
+        !isdigit(month_str[0]) || !isdigit(month_str[1]) ||
+        !isdigit(day_str[0]) || !isdigit(day_str[1]))
+    {
+        printf("Date must contain only numbers. Example: 2025-04-09 or 2025/04/09.\n");
+        return 0;
+    }
+
+    int year = atoi(year_str);
+    int month = atoi(month_str);
+    int day = atoi(day_str);
 
     if (year < 2000 || year > 2100)
     {
+        printf("Year must be between 2000 and 2100.\n");
         return 0;
     }
 
     if (month < 1 || month > 12)
     {
+        printf("Month must be between 1 and 12.\n");
         return 0;
     }
 
     if (day < 1 || day > 31)
     {
+        printf("Day must be between 1 and 31.\n");
         return 0;
     }
 
@@ -69,40 +78,44 @@ int validate_date(const char* date)
 
 int validate_time(const char* time)
 {
-
-    if (strlen(time) != 5 || time[2] != ':') // checking user input
+    // Check length and position of colon
+    if (strlen(time) != 5 || time[2] != ':')
     {
+        printf("Invalid time format! Please use 24-hour format HH:MM (e.g., 14:30).\n");
         return 0;
     }
 
-
+    // Check that all characters (except colon) are digits
     for (int i = 0; i < 5; i++)
     {
         if (i == 2)
-        {
             continue;
-        }
 
         if (!isdigit(time[i]))
         {
+            printf("Time must contain only digits and a colon. Example: 09:45 or 23:00.\n");
             return 0;
         }
     }
 
-    int hour, minute; // declaring variables for hour and minute
-
-    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2) // <-- FIXED LINE
+    // Extract hour and minute values
+    int hour, minute;
+    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2)
     {
+        printf("Failed to parse time. Please use format HH:MM (24-hour).\n");
         return 0;
     }
 
+    // Validate hour and minute ranges
     if (hour < 0 || hour > 23)
     {
+        printf("Hour must be between 0 and 23.\n");
         return 0;
     }
 
     if (minute < 0 || minute > 59)
     {
+        printf("Minutes must be between 0 and 59.\n");
         return 0;
     }
 
