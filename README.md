@@ -225,3 +225,10 @@ I have added the following things in todolist.c (source file)
     
 -Clearly lists available task management options
 -Enhances user navigation with a clean and organized layout
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Feish/Date:2025-04-09 : 
+
+Solving errors
+
