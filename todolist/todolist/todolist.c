@@ -100,7 +100,7 @@ int validate_time(const char* time)
 
     // Extract hour and minute values
     int hour, minute;
-    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2)
+    if (scanf(time, "%2d:%2d", &hour, &minute) != 2)
     {
         printf("Failed to parse time. Please use format HH:MM (24-hour).\n");
         return 0;
@@ -121,6 +121,25 @@ int validate_time(const char* time)
 
     return 1;
 }
+// Function to search for a task by description
+
+void view_tasks_by_priority()
+{
+    if (taskCount == 0)
+    {
+        printf("No tasks available.\n");
+        return;
+    }
+
+    printf("\nSorting tasks by priority...\n");
+
+    sort_tasks_by_priority();
+
+    printf("Displaying tasks by priority:\n");
+
+    view_tasks();
+}
+
 
 // Function to get a valid integer input from the user within a specific range
 int get_integer_input(const char* prompt, int min, int max)
