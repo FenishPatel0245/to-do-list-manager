@@ -11,7 +11,7 @@ int taskCount = 0;  // Number of tasks currently stored
 
 // call this function to print the header
 
-void print_header(const char* title) 
+void print_header(const char* title)
 {
     printf("\n==============================\n");
     printf("  %s\n", title);
@@ -22,12 +22,12 @@ void print_header(const char* title)
 
 int validate_date(const char* date)
 {
-	if (strlen(date) != 10 || date[4] != '-' || date[7] != '-') // ckecking user input
+    if (strlen(date) != 10 || date[4] != '-' || date[7] != '-') // ckecking user input
     {
-        return 0; 
+        return 0;
     }
 
-    for (int i = 0; i < 10; i++) 
+    for (int i = 0; i < 10; i++)
     {
         if (i == 4 || i == 7)
         {
@@ -40,7 +40,7 @@ int validate_date(const char* date)
         }
     }
 
-	int year, month, day; // declaring variables for year, month and day
+    int year, month, day; // declaring variables for year, month and day
 
     if (sscanf(date, "%d-%d-%d", &year, &month, &day) != 3)
     {
@@ -49,12 +49,12 @@ int validate_date(const char* date)
 
     if (year < 2000 || year > 2100)
     {
-        return 0; 
+        return 0;
     }
 
     if (month < 1 || month > 12)
     {
-        return 0; 
+        return 0;
     }
 
     if (day < 1 || day > 31)
@@ -62,20 +62,20 @@ int validate_date(const char* date)
         return 0;
     }
 
-    return 1; 
+    return 1;
 }
 
 // Function to validate a time string in the format "HH:MM"
 
-int validate_time(const char* time)  
+int validate_time(const char* time)
 {
-    
-	if (strlen(time) != 5 || time[2] != ':') // checking user input
+
+    if (strlen(time) != 5 || time[2] != ':') // checking user input
     {
-        return 0; 
+        return 0;
     }
 
-    
+
     for (int i = 0; i < 5; i++)
     {
         if (i == 2)
@@ -89,16 +89,16 @@ int validate_time(const char* time)
         }
     }
 
-	int hour, minute; // declaring variables for hour and minute
+    int hour, minute; // declaring variables for hour and minute
 
-    if (scanf(time, "%2d:%2d", &hour, &minute) != 2)
+    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2) // <-- FIXED LINE
     {
-        return 0; 
+        return 0;
     }
 
     if (hour < 0 || hour > 23)
     {
-        return 0; 
+        return 0;
     }
 
     if (minute < 0 || minute > 59)
@@ -112,31 +112,31 @@ int validate_time(const char* time)
 // Function to get a valid integer input from the user within a specific range
 int get_integer_input(const char* prompt, int min, int max)
 {
-	int value;  // declaring variable for user input
+    int value;  // declaring variable for user input
 
     while (1)
     {
-        
+
         printf("%s", prompt);
 
-        
+
         if (scanf("%d", &value) == 1)
         {
-            
+
             if (value >= min && value <= max)
             {
-                break; 
+                break;
             }
         }
 
-        
-        printf("Invalid input! Please enter a number between %d and %d.\n", min, max);  
 
-        
-		while (getchar() != '\n'); // clear the input buffer
+        printf("Invalid input! Please enter a number between %d and %d.\n", min, max);
+
+
+        while (getchar() != '\n'); // clear the input buffer
     }
 
-    return value; 
+    return value;
 }
 // Function to save tasks to a file
 
@@ -218,16 +218,14 @@ void add_task()
         printf("Enter due date (YYYY-MM-DD): ");
 
         scanf("%10s", newTask.date);
-    }
-    while (!validate_date(newTask.date));
+    } while (!validate_date(newTask.date));
 
     do
     {
         printf("Enter due time (HH:MM): ");
 
         scanf("%5s", newTask.time);
-    } 
-    while (!validate_time(newTask.time));
+    } while (!validate_time(newTask.time));
 
     newTask.priority = get_integer_input("Enter priority (1-5, 5 is highest): ", 1, 5);   // Get priority input
 
@@ -261,7 +259,7 @@ void view_tasks()
             tasks[i].description,
             tasks[i].date,
             tasks[i].time,
-			tasks[i].priority); // adding priority to the task
+            tasks[i].priority); // adding priority to the task
 }
 
 // Sort tasks by priority (5 is highest)
@@ -285,7 +283,7 @@ void sort_tasks_by_priority()
 
 void mark_task_completed()
 {
-    view_tasks(); 
+    view_tasks();
 
     if (taskCount == 0)
 
@@ -307,7 +305,7 @@ void sort_tasks_by_date()
     {
         for (int j = 0; j < taskCount - i - 1; j++)
         {
-			if (strcmp(tasks[j].date, tasks[j + 1].date) > 0)  // swapping the tasks
+            if (strcmp(tasks[j].date, tasks[j + 1].date) > 0)  // swapping the tasks
             {
                 Task temp = tasks[j];
                 tasks[j] = tasks[j + 1];
@@ -319,11 +317,11 @@ void sort_tasks_by_date()
 // Function to view tasks by date
 void search_task()
 {
-	char keyword[100];         // Create a buffer for the keyword
+    char keyword[100];         // Create a buffer for the keyword
 
     getchar();
 
-    printf("Enter keyword to search: ");   
+    printf("Enter keyword to search: ");
 
     fgets(keyword, sizeof(keyword), stdin);
 
@@ -331,7 +329,7 @@ void search_task()
 
     printf("\n==== Search Results ====\n");
 
-	int found = 0;   //flag to check if any tasks are found
+    int found = 0;   //flag to check if any tasks are found
 
     for (int i = 0; i < taskCount; i++)
     {
@@ -373,6 +371,22 @@ void delete_task()
 
     printf("Task deleted successfully!\n");
 }
+
+// Function to view tasks by priority
+
+void view_tasks_by_priority() 
+{
+
+    printf("Viewing tasks by priority...\n");
+}
+
+// Function to view tasks by date
+
+void view_tasks_by_date()
+{
+    printf("Viewing tasks by date...\n");
+}
+
 
 // Function to print the main menu
 void print_menu()

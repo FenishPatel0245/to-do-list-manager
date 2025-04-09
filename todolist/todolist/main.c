@@ -5,7 +5,7 @@ int main()
 {
     load_tasks();
 
-    while (1)
+    while (1)  
     {
         print_menu();
         int choice = get_integer_input("Choose an option (1-8): ", 1, 8);
