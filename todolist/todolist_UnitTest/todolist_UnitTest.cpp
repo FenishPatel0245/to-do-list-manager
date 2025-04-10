@@ -3,6 +3,10 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
+
+extern "C" {
+#include "../todolist/todolist.h"
+}
 namespace todolistUnitTest
 {
 	TEST_CLASS(todolistUnitTest)
