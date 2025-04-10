@@ -243,3 +243,9 @@ Implemented validate_date() to verify that date inputs follow the correct format
 Name:Pratham/Date:2025-04-09 : 
 
 Added validate_time() function to validate time inputs using 24-hour format.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Feish/Date:2025-04-09 : 
+
+Implemented view_tasks_by_priority() function to display tasks sorted by priority.
