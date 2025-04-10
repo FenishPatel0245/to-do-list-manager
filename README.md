@@ -299,5 +299,22 @@ Unit test Case 4 : Added unit test ValidateTime_Invalid() to ensure validate_tim
 - Ensures time inputs strictly follow HH:MM format
 - Strengthens robustness of time validation by covering diverse edge and formatting errors.
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Name:Darshita/Date:2025-04-10 : 
 
+Unit test Case 5 : Added unit test SortTasksByPriority_CheckOrder() to confirm that sort_tasks_by_priority() orders tasks correctly by priority level.
+
+- Uses a predefined set of tasks with different priorities
+- Asserts that tasks are sorted in descending priority (high to low)
+- Ensures reliability of priority-based sorting logic
+  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Fenish/Date:2025-04-10 : 
+
+Unit test Case 6 : Added unit test SortTasksByDate_CheckOrder() to verify that sort_tasks_by_date() correctly arranges tasks in chronological order.
+
+- Uses tasks with varying due dates
+- Asserts correct order: April → May → June
+- Ensures reliable sorting by date for improved task scheduling
