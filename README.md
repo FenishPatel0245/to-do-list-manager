@@ -318,3 +318,12 @@ Unit test Case 6 : Added unit test SortTasksByDate_CheckOrder() to verify that s
 - Uses tasks with varying due dates
 - Asserts correct order: April → May → June
 - Ensures reliable sorting by date for improved task scheduling
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Darshita/Date:2025-04-10 : 
+
+Making UI more userfriendly 
+
+- Making menu option more good looking
+- displaying error message separately
