@@ -278,6 +278,15 @@ Unit test Case 2 : Added unit test ValidateDate_InvalidFormat() to ensure valida
 - Ensures empty and incorrectly structured dates are handled properly
 - Strengthens input validation reliability by covering edge cases and incorrect inputs.
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Fenish/Date:2025-04-10 : 
+
+Unit test Case 3 : Added unit test ValidateTime_Valid() to confirm that validate_time() accepts properly formatted 24-hour time values.
+
+- Tests boundary values like 00:00 and 23:59
+- Confirms standard valid times like 09:45 and 23:00
+- Ensures the function properly recognizes valid input within the expected range.
 
 
 
