@@ -34,5 +34,12 @@ namespace todolistUnitTest
 			Assert::IsFalse(validate_date("2101-01-01"));
 			Assert::IsFalse(validate_date(""));
 		}
+		TEST_METHOD(ValidateTime_Valid)
+		{
+			Assert::IsTrue(validate_time("09:45"));
+			Assert::IsTrue(validate_time("23:00"));
+			Assert::IsTrue(validate_time("00:00"));
+			Assert::IsTrue(validate_time("23:59"));
+		}
 	};
 }
