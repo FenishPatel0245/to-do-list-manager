@@ -8,12 +8,18 @@
 Task tasks[MAX_TASKS];
 int taskCount = 0;
 
+// Function prototypes
+
+// Function to print the main menu
+
 void print_header(const char* title)
 {
     printf("\n==============================\n");
     printf("  %s\n", title);
     printf("==============================\n");
 }
+
+// Function to print the main menu
 
 int validate_date(const char* date)
 {
@@ -23,7 +29,7 @@ int validate_date(const char* date)
         return 0;
     }
 
-    char sep = date[4];
+	char sep = date[4]; // separator of the date
 
     if (date[7] != sep)
     {
@@ -36,17 +42,15 @@ int validate_date(const char* date)
     strncpy(month_str, date + 5, 2); month_str[2] = '\0';
     strncpy(day_str, date + 8, 2); day_str[2] = '\0';
 
-    if (!isdigit(year_str[0]) || !isdigit(year_str[1]) || !isdigit(year_str[2]) || !isdigit(year_str[3]) ||
-        !isdigit(month_str[0]) || !isdigit(month_str[1]) ||
-        !isdigit(day_str[0]) || !isdigit(day_str[1]))
+    if (!isdigit(year_str[0]) || !isdigit(year_str[1]) || !isdigit(year_str[2]) || !isdigit(year_str[3]) || !isdigit(month_str[0]) || !isdigit(month_str[1]) || !isdigit(day_str[0]) || !isdigit(day_str[1]))
     {
         printf("Date must contain only numbers. Example: 2025-04-09 or 2025/04/09.\n");
         return 0;
     }
 
-    int year = atoi(year_str);
-    int month = atoi(month_str);
-    int day = atoi(day_str);
+	int year = atoi(year_str); // convert string to integer
+	int month = atoi(month_str); // convert string to integer
+	int day = atoi(day_str); // convert string to integer
 
     if (year < 2000 || year > 2100)
     {
@@ -69,6 +73,8 @@ int validate_date(const char* date)
     return 1;
 }
 
+// Function to validate time format (HH:MM)
+
 int validate_time(const char* time)
 {
     if (strlen(time) != 5 || time[2] != ':')
@@ -89,7 +95,8 @@ int validate_time(const char* time)
         }
     }
 
-    int hour, minute;
+	int hour, minute;// variables to store hour and minute
+
     if (sscanf(time, "%2d:%2d", &hour, &minute) != 2)
     {
         printf("Failed to parse time. Please use format HH:MM (24-hour).\n");
@@ -111,9 +118,11 @@ int validate_time(const char* time)
     return 1;
 }
 
+// Function to get integer input from user with validation
+
 int get_integer_input(const char* prompt, int min, int max)
 {
-    int value;
+	int value; // variable to store the input value
 
     while (1)
     {
@@ -135,16 +144,18 @@ int get_integer_input(const char* prompt, int min, int max)
     return value;
 }
 
+// Function to load tasks from file
+
 void load_tasks()
 {
-    FILE* file = fopen(FILENAME, "r");
+	FILE* file = fopen(FILENAME, "r");  // open file for reading
 
     if (!file)
     {
         return;
     }
 
-    while (fscanf(file, " %99[^\n] %10s %5s %d %d",
+	while (fscanf(file, " %99[^\n] %10s %5s %d %d", // format string for reading
         tasks[taskCount].description,
         tasks[taskCount].date,
         tasks[taskCount].time,
@@ -159,8 +170,10 @@ void load_tasks()
         }
     }
 
-    fclose(file);
+	fclose(file); // close file
 }
+
+// Function to save tasks to file
 
 void save_tasks()
 {
@@ -181,8 +194,10 @@ void save_tasks()
             tasks[i].done);
     }
 
-    fclose(file);
+	fclose(file); // close file
 }
+
+// Function to add a new task
 
 void add_task()
 {
@@ -192,7 +207,7 @@ void add_task()
         return;
     }
 
-    Task newTask;
+	Task newTask; // variable to store new task
 
     getchar();
 
@@ -200,19 +215,22 @@ void add_task()
 
     fgets(newTask.description, sizeof(newTask.description), stdin);
 
-    newTask.description[strcspn(newTask.description, "\n")] = 0;
+	newTask.description[strcspn(newTask.description, "\n")] = 0; // remove newline character
 
     do
     {
         printf("Enter due date (YYYY-MM-DD): ");
         scanf("%10s", newTask.date);
-    } while (!validate_date(newTask.date));
+    }
+    while (!validate_date(newTask.date));
 
     do
     {
         printf("Enter due time (HH:MM): ");
+
         scanf("%5s", newTask.time);
-    } while (!validate_time(newTask.time));
+    } 
+    while (!validate_time(newTask.time));
 
     newTask.priority = get_integer_input("Enter priority (1-5, 5 is highest): ", 1, 5);
 
@@ -224,6 +242,8 @@ void add_task()
 
     printf("Task added successfully!\n");
 }
+
+// Function to view all tasks
 
 void view_tasks()
 {
@@ -245,6 +265,8 @@ void view_tasks()
             tasks[i].priority);
 }
 
+// Function to sort tasks by priority
+
 void sort_tasks_by_priority()
 {
     for (int i = 0; i < taskCount - 1; i++)
@@ -260,6 +282,8 @@ void sort_tasks_by_priority()
         }
     }
 }
+
+// Function to view tasks sorted by priority
 
 void view_tasks_by_priority()
 {
@@ -278,6 +302,8 @@ void view_tasks_by_priority()
     view_tasks();
 }
 
+// Function to sort tasks by date
+
 void sort_tasks_by_date()
 {
     for (int i = 0; i < taskCount - 1; i++)
@@ -293,6 +319,8 @@ void sort_tasks_by_date()
         }
     }
 }
+
+// Function to view tasks sorted by date
 
 void view_tasks_by_date()
 {
@@ -311,6 +339,8 @@ void view_tasks_by_date()
     view_tasks();
 }
 
+// Function to mark a task as completed
+
 void mark_task_completed()
 {
     view_tasks();
@@ -327,9 +357,11 @@ void mark_task_completed()
     printf("Task marked as completed!\n");
 }
 
+// Function to search for a task by keyword
+
 void search_task()
 {
-    char keyword[100];
+	char keyword[100]; // variable to store search keyword
 
     getchar();
 
@@ -363,6 +395,8 @@ void search_task()
     }
 }
 
+// Function to delete a task
+
 void delete_task()
 {
     view_tasks();
@@ -377,12 +411,14 @@ void delete_task()
         tasks[i] = tasks[i + 1];
     }
 
-    taskCount--;
+	taskCount--; // reduce task count
 
     save_tasks();
 
     printf("Task deleted successfully!\n");
 }
+
+// Function to print the main menu
 
 void print_menu()
 {
