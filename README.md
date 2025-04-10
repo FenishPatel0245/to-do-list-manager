@@ -269,6 +269,14 @@ Unit test Case 1 : Added unit test ValidateDate_Valid() to verify validate_date(
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Name:Darshita/Date:2025-04-10 : 
+
+Unit test Case 2 : Added unit test ValidateDate_InvalidFormat() to ensure validate_date() correctly rejects malformed or out-of-range dates.
+
+- Tests invalid formats, separators, non-digit characters
+- Catches out-of-range months/days and unsupported years
+- Ensures empty and incorrectly structured dates are handled properly
+- Strengthens input validation reliability by covering edge cases and incorrect inputs.
 
 
 
