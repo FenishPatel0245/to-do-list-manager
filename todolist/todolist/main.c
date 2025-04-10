@@ -9,6 +9,7 @@ int main()
     {
         print_menu();
         int choice = get_integer_input("Choose an option (1-8): ", 1, 8);
+        printf("*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*\n");
 
         switch (choice)
         {
@@ -27,6 +28,9 @@ int main()
         case 7: delete_task();
             break;
         case 8:
+            printf("\n*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*\n");
+			printf("|  Thank you for using the To-Do List Manager!  |\n");
+            printf("*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*\n");
             return 0;
         }
     }

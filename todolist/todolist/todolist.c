@@ -14,9 +14,9 @@ int taskCount = 0;
 
 void print_header(const char* title)
 {
-    printf("\n==============================\n");
-    printf("  %s\n", title);
-    printf("==============================\n");
+    printf("\n*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*\n");
+    printf("|  %s\n", title);
+    printf("*-----------------------------*\n");
 }
 
 // Function to print the main menu
@@ -25,7 +25,7 @@ int validate_date(const char* date)
 {
     if (strlen(date) != 10 || !(date[4] == '-' || date[4] == '/') || !(date[7] == '-' || date[7] == '/'))
     {
-        printf("Invalid date format! Please use YYYY-MM-DD or YYYY/MM/DD (e.g., 2025-04-09).\n");
+        printf("\nInvalid date format! Please use YYYY-MM-DD or YYYY/MM/DD (e.g., 2025-04-09).\n");
         return 0;
     }
 
@@ -33,7 +33,7 @@ int validate_date(const char* date)
 
     if (date[7] != sep)
     {
-        printf("Inconsistent separators! Use the same separator throughout (either '-' or '/').\n");
+        printf("\nInconsistent separators! Use the same separator throughout (either '-' or '/').\n");
         return 0;
     }
 
@@ -44,7 +44,7 @@ int validate_date(const char* date)
 
     if (!isdigit(year_str[0]) || !isdigit(year_str[1]) || !isdigit(year_str[2]) || !isdigit(year_str[3]) || !isdigit(month_str[0]) || !isdigit(month_str[1]) || !isdigit(day_str[0]) || !isdigit(day_str[1]))
     {
-        printf("Date must contain only numbers. Example: 2025-04-09 or 2025/04/09.\n");
+        printf("\nDate must contain only numbers. Example: 2025-04-09 or 2025/04/09.\n");
         return 0;
     }
 
@@ -79,7 +79,7 @@ int validate_time(const char* time)
 {
     if (strlen(time) != 5 || time[2] != ':')
     {
-        printf("Invalid time format! Please use 24-hour format HH:MM (e.g., 14:30).\n");
+        printf("\nInvalid time format! Please use 24-hour format HH:MM (e.g., 14:30).\n");
         return 0;
     }
 
@@ -90,7 +90,7 @@ int validate_time(const char* time)
 
         if (!isdigit(time[i]))
         {
-            printf("Time must contain only digits and a colon. Example: 09:45 or 23:00.\n");
+            printf("\nTime must contain only digits and a colon. Example: 09:45 or 23:00.\n");
             return 0;
         }
     }
@@ -99,7 +99,7 @@ int validate_time(const char* time)
 
     if (sscanf(time, "%2d:%2d", &hour, &minute) != 2)
     {
-        printf("Failed to parse time. Please use format HH:MM (24-hour).\n");
+        printf("\nFailed to parse time. Please use format HH:MM (24-hour).\n");
         return 0;
     }
 
@@ -136,7 +136,7 @@ int get_integer_input(const char* prompt, int min, int max)
             }
         }
 
-        printf("Invalid input! Please enter a number between %d and %d.\n", min, max);
+        printf("\nInvalid input! Please enter a number between %d and %d.\n\n", min, max);
 
         while (getchar() != '\n');
     }
@@ -180,7 +180,7 @@ void save_tasks()
     FILE* file = fopen(FILENAME, "w");
     if (!file)
     {
-        printf("Error saving tasks!\n");
+        printf("\nError saving tasks!\n");
         return;
     }
 
@@ -203,14 +203,14 @@ void add_task()
 {
     if (taskCount >= MAX_TASKS)
     {
-        printf("Task list is full!\n");
+        printf("\nTask list is full!\n");
         return;
     }
 
 	Task newTask; // variable to store new task
 
     getchar();
-
+    printf("\n");
     printf("Enter task description: ");
 
     fgets(newTask.description, sizeof(newTask.description), stdin);
@@ -240,6 +240,7 @@ void add_task()
 
     save_tasks();
 
+    printf("\n");
     printf("Task added successfully!\n");
 }
 
@@ -249,10 +250,10 @@ void view_tasks()
 {
     if (taskCount == 0)
     {
-        printf("No tasks available.\n");
+        printf("\nNo tasks available.\n");
         return;
     }
-
+    printf("\n");
     printf("\n==== To-Do List ====\n");
 
     for (int i = 0; i < taskCount; i++)
@@ -289,15 +290,15 @@ void view_tasks_by_priority()
 {
     if (taskCount == 0)
     {
-        printf("No tasks available.\n");
+        printf("\nNo tasks available.\n");
         return;
     }
 
-    printf("\nSorting tasks by priority...\n");
+   
 
     sort_tasks_by_priority();
 
-    printf("Displaying tasks by priority:\n");
+    printf("\n\nDisplaying tasks by priority");
 
     view_tasks();
 }
@@ -326,15 +327,13 @@ void view_tasks_by_date()
 {
     if (taskCount == 0)
     {
-        printf("No tasks available.\n");
+        printf("\nNo tasks available.\n");
         return;
     }
 
-    printf("\nSorting tasks by date...\n");
-
     sort_tasks_by_date();
 
-    printf("Displaying tasks by date:\n");
+    printf("\n\nDisplaying tasks by date");
 
     view_tasks();
 }
@@ -348,13 +347,13 @@ void mark_task_completed()
     if (taskCount == 0)
         return;
 
-    int taskNumber = get_integer_input("Enter task number to mark as completed: ", 1, taskCount);
+    int taskNumber = get_integer_input("\nEnter task number to mark as completed: ", 1, taskCount);
 
     tasks[taskNumber - 1].done = 1;
 
     save_tasks();
 
-    printf("Task marked as completed!\n");
+    printf("\nTask marked as completed!\n");
 }
 
 // Function to search for a task by keyword
@@ -365,7 +364,7 @@ void search_task()
 
     getchar();
 
-    printf("Enter keyword to search: ");
+    printf("\n\nEnter keyword to search: ");
 
     fgets(keyword, sizeof(keyword), stdin);
 
@@ -391,7 +390,7 @@ void search_task()
 
     if (!found)
     {
-        printf("No tasks found with that keyword.\n");
+        printf("\nNo tasks found with that keyword.\n");
     }
 }
 
@@ -404,7 +403,7 @@ void delete_task()
     if (taskCount == 0)
         return;
 
-    int taskNumber = get_integer_input("Enter task number to delete: ", 1, taskCount);
+    int taskNumber = get_integer_input("\nEnter task number to delete: ", 1, taskCount);
 
     for (int i = taskNumber - 1; i < taskCount - 1; i++)
     {
@@ -415,20 +414,22 @@ void delete_task()
 
     save_tasks();
 
-    printf("Task deleted successfully!\n");
+    printf("\nTask deleted successfully!\n");
 }
 
 // Function to print the main menu
 
 void print_menu()
 {
-    print_header("TO-DO LIST MANAGER");
-    printf("1. Add Task\n");
-    printf("2. View Tasks\n");
-    printf("3. View Tasks by Priority\n");
-    printf("4. View Tasks by Date\n");
-    printf("5. Mark Task as Completed\n");
-    printf("6. Search Task\n");
-    printf("7. Delete Task\n");
-    printf("8. Exit\n");
+    printf("\n");
+    print_header("TO-DO LIST MANAGER         |");
+    printf("|1. Add Task                  |\n");
+    printf("|2. View Tasks                |\n");
+    printf("|3. View Tasks by Priority    |\n");
+    printf("|4. View Tasks by Date        |\n");
+    printf("|5. Mark Task as Completed    |\n");
+    printf("|6. Search Task               |\n");
+    printf("|7. Delete Task               |\n");
+    printf("|8. Exit                      |\n");
+    printf("*-----------------------------*\n");
 }
