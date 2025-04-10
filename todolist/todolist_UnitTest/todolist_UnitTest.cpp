@@ -13,8 +13,12 @@ namespace todolistUnitTest
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(ValidateDate_Valid)
 		{
+			Assert::IsTrue(validate_date("2025-04-09"));
+			Assert::IsTrue(validate_date("2025/04/09"));
+			Assert::IsTrue(validate_date("2000-01-01"));
+			Assert::IsTrue(validate_date("2100-12-31"));
 		}
 	};
 }
