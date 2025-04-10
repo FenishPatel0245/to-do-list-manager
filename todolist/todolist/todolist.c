@@ -5,11 +5,8 @@
 #include <ctype.h>
 #include "todolist.h"
 
-Task tasks[MAX_TASKS]; // Array to store tasks
-int taskCount = 0;  // Number of tasks currently stored
-
-
-// call this function to print the header
+Task tasks[MAX_TASKS];
+int taskCount = 0;
 
 void print_header(const char* title)
 {
@@ -17,8 +14,6 @@ void print_header(const char* title)
     printf("  %s\n", title);
     printf("==============================\n");
 }
-
-// call this function to get date in YYYY-MM-DD format
 
 int validate_date(const char* date)
 {
@@ -74,18 +69,14 @@ int validate_date(const char* date)
     return 1;
 }
 
-// Function to validate a time string in the format "HH:MM"
-
 int validate_time(const char* time)
 {
-    // Check length and position of colon
     if (strlen(time) != 5 || time[2] != ':')
     {
         printf("Invalid time format! Please use 24-hour format HH:MM (e.g., 14:30).\n");
         return 0;
     }
 
-    // Check that all characters (except colon) are digits
     for (int i = 0; i < 5; i++)
     {
         if (i == 2)
@@ -98,15 +89,13 @@ int validate_time(const char* time)
         }
     }
 
-    // Extract hour and minute values
     int hour, minute;
-    if (scanf(time, "%2d:%2d", &hour, &minute) != 2)
+    if (sscanf(time, "%2d:%2d", &hour, &minute) != 2)
     {
         printf("Failed to parse time. Please use format HH:MM (24-hour).\n");
         return 0;
     }
 
-    // Validate hour and minute ranges
     if (hour < 0 || hour > 23)
     {
         printf("Hour must be between 0 and 23.\n");
@@ -121,7 +110,156 @@ int validate_time(const char* time)
 
     return 1;
 }
-// Function to search for a task by description
+
+int get_integer_input(const char* prompt, int min, int max)
+{
+    int value;
+
+    while (1)
+    {
+        printf("%s", prompt);
+
+        if (scanf("%d", &value) == 1)
+        {
+            if (value >= min && value <= max)
+            {
+                break;
+            }
+        }
+
+        printf("Invalid input! Please enter a number between %d and %d.\n", min, max);
+
+        while (getchar() != '\n');
+    }
+
+    return value;
+}
+
+void load_tasks()
+{
+    FILE* file = fopen(FILENAME, "r");
+
+    if (!file)
+    {
+        return;
+    }
+
+    while (fscanf(file, " %99[^\n] %10s %5s %d %d",
+        tasks[taskCount].description,
+        tasks[taskCount].date,
+        tasks[taskCount].time,
+        &tasks[taskCount].priority,
+        &tasks[taskCount].done) == 5)
+    {
+        taskCount++;
+
+        if (taskCount >= MAX_TASKS)
+        {
+            break;
+        }
+    }
+
+    fclose(file);
+}
+
+void save_tasks()
+{
+    FILE* file = fopen(FILENAME, "w");
+    if (!file)
+    {
+        printf("Error saving tasks!\n");
+        return;
+    }
+
+    for (int i = 0; i < taskCount; i++)
+    {
+        fprintf(file, "%s\n%s %s %d %d\n",
+            tasks[i].description,
+            tasks[i].date,
+            tasks[i].time,
+            tasks[i].priority,
+            tasks[i].done);
+    }
+
+    fclose(file);
+}
+
+void add_task()
+{
+    if (taskCount >= MAX_TASKS)
+    {
+        printf("Task list is full!\n");
+        return;
+    }
+
+    Task newTask;
+
+    getchar();
+
+    printf("Enter task description: ");
+
+    fgets(newTask.description, sizeof(newTask.description), stdin);
+
+    newTask.description[strcspn(newTask.description, "\n")] = 0;
+
+    do
+    {
+        printf("Enter due date (YYYY-MM-DD): ");
+        scanf("%10s", newTask.date);
+    } while (!validate_date(newTask.date));
+
+    do
+    {
+        printf("Enter due time (HH:MM): ");
+        scanf("%5s", newTask.time);
+    } while (!validate_time(newTask.time));
+
+    newTask.priority = get_integer_input("Enter priority (1-5, 5 is highest): ", 1, 5);
+
+    newTask.done = 0;
+
+    tasks[taskCount++] = newTask;
+
+    save_tasks();
+
+    printf("Task added successfully!\n");
+}
+
+void view_tasks()
+{
+    if (taskCount == 0)
+    {
+        printf("No tasks available.\n");
+        return;
+    }
+
+    printf("\n==== To-Do List ====\n");
+
+    for (int i = 0; i < taskCount; i++)
+        printf("%d. [%s] %s (Due: %s %s) - Priority: %d\n",
+            i + 1,
+            tasks[i].done ? "X" : " ",
+            tasks[i].description,
+            tasks[i].date,
+            tasks[i].time,
+            tasks[i].priority);
+}
+
+void sort_tasks_by_priority()
+{
+    for (int i = 0; i < taskCount - 1; i++)
+    {
+        for (int j = 0; j < taskCount - i - 1; j++)
+        {
+            if (tasks[j].priority < tasks[j + 1].priority)
+            {
+                Task temp = tasks[j];
+                tasks[j] = tasks[j + 1];
+                tasks[j + 1] = temp;
+            }
+        }
+    }
+}
 
 void view_tasks_by_priority()
 {
@@ -140,170 +278,14 @@ void view_tasks_by_priority()
     view_tasks();
 }
 
-
-// Function to get a valid integer input from the user within a specific range
-int get_integer_input(const char* prompt, int min, int max)
-{
-    int value;  // declaring variable for user input
-
-    while (1)
-    {
-
-        printf("%s", prompt);
-
-
-        if (scanf("%d", &value) == 1)
-        {
-
-            if (value >= min && value <= max)
-            {
-                break;
-            }
-        }
-
-
-        printf("Invalid input! Please enter a number between %d and %d.\n", min, max);
-
-
-        while (getchar() != '\n'); // clear the input buffer
-    }
-
-    return value;
-}
-// Function to save tasks to a file
-
-void load_tasks()
-{
-    FILE* file = fopen(FILENAME, "r"); // Open the file in read mode
-
-    if (!file)
-    {
-        return;
-    }
-
-    // Read data from the file line by line
-
-    while (fscanf(file, " %99[^\n] %10s %5s %d %d",
-        tasks[taskCount].description,
-        tasks[taskCount].date,
-        tasks[taskCount].time,
-        &tasks[taskCount].priority,
-        &tasks[taskCount].done) == 5)
-    {
-
-        taskCount++;
-
-        if (taskCount >= MAX_TASKS)
-        {
-            break;
-        }
-    }
-
-    fclose(file); // Close the file
-}
-// Function to save tasks to a file
-
-void save_tasks()
-{
-    FILE* file = fopen(FILENAME, "w");  // Open the file in write mode
-    if (!file)
-    {
-        printf("Error saving tasks!\n");
-        return;
-    }
-
-    // Write tasks to the file
-    for (int i = 0; i < taskCount; i++)
-    {
-        fprintf(file, "%s\n%s %s %d %d\n",
-            tasks[i].description,
-            tasks[i].date,
-            tasks[i].time,
-            tasks[i].priority,
-            tasks[i].done);
-    }
-
-    fclose(file); // Close the file
-}
-
-// Function to add a new task
-void add_task()
-{
-    if (taskCount >= MAX_TASKS)
-    {
-        printf("Task list is full!\n");
-        return;
-    }
-
-    Task newTask;                  // Create a new task
-
-    getchar();                           // Clear newline from previous input
-
-    printf("Enter task description: ");
-
-    fgets(newTask.description, sizeof(newTask.description), stdin);
-
-    newTask.description[strcspn(newTask.description, "\n")] = 0;
-
-    do
-    {
-        printf("Enter due date (YYYY-MM-DD): ");
-
-        scanf("%10s", newTask.date);
-    } while (!validate_date(newTask.date));
-
-    do
-    {
-        printf("Enter due time (HH:MM): ");
-
-        scanf("%5s", newTask.time);
-    } while (!validate_time(newTask.time));
-
-    newTask.priority = get_integer_input("Enter priority (1-5, 5 is highest): ", 1, 5);   // Get priority input
-
-    newTask.done = 0;
-
-    tasks[taskCount++] = newTask; // Add the new task to the array
-
-    save_tasks();      // Save tasks to file
-
-    printf("Task added successfully!\n");   // Print success message
-}
-
-// Function to add a new task
-
-void view_tasks()
-{
-    if (taskCount == 0) // Check if there are no tasks
-
-    {
-        printf("No tasks available.\n");
-        return;
-    }
-
-    printf("\n==== To-Do List ====\n");
-
-    for (int i = 0; i < taskCount; i++)
-
-        printf("%d. [%s] %s (Due: %s %s) - Priority: %d\n",
-            i + 1,
-            tasks[i].done ? "X" : " ",   // maeking the task done
-            tasks[i].description,
-            tasks[i].date,
-            tasks[i].time,
-            tasks[i].priority); // adding priority to the task
-}
-
-// Sort tasks by priority (5 is highest)
-void sort_tasks_by_priority()
+void sort_tasks_by_date()
 {
     for (int i = 0; i < taskCount - 1; i++)
     {
         for (int j = 0; j < taskCount - i - 1; j++)
         {
-            if (tasks[j].priority < tasks[j + 1].priority)
+            if (strcmp(tasks[j].date, tasks[j + 1].date) > 0)
             {
-                // Swap the tasks
                 Task temp = tasks[j];
                 tasks[j] = tasks[j + 1];
                 tasks[j + 1] = temp;
@@ -311,14 +293,29 @@ void sort_tasks_by_priority()
         }
     }
 }
-// Mark a task as completed
+
+void view_tasks_by_date()
+{
+    if (taskCount == 0)
+    {
+        printf("No tasks available.\n");
+        return;
+    }
+
+    printf("\nSorting tasks by date...\n");
+
+    sort_tasks_by_date();
+
+    printf("Displaying tasks by date:\n");
+
+    view_tasks();
+}
 
 void mark_task_completed()
 {
     view_tasks();
 
     if (taskCount == 0)
-
         return;
 
     int taskNumber = get_integer_input("Enter task number to mark as completed: ", 1, taskCount);
@@ -330,26 +327,9 @@ void mark_task_completed()
     printf("Task marked as completed!\n");
 }
 
-// Function to search for a task by description
-void sort_tasks_by_date()
-{
-    for (int i = 0; i < taskCount - 1; i++)
-    {
-        for (int j = 0; j < taskCount - i - 1; j++)
-        {
-            if (strcmp(tasks[j].date, tasks[j + 1].date) > 0)  // swapping the tasks
-            {
-                Task temp = tasks[j];
-                tasks[j] = tasks[j + 1];
-                tasks[j + 1] = temp;
-            }
-        }
-    }
-}
-// Function to view tasks by date
 void search_task()
 {
-    char keyword[100];         // Create a buffer for the keyword
+    char keyword[100];
 
     getchar();
 
@@ -361,7 +341,7 @@ void search_task()
 
     printf("\n==== Search Results ====\n");
 
-    int found = 0;   //flag to check if any tasks are found
+    int found = 0;
 
     for (int i = 0; i < taskCount; i++)
     {
@@ -404,21 +384,6 @@ void delete_task()
     printf("Task deleted successfully!\n");
 }
 
-// Function to view tasks sorted by priority
-void view_tasks_by_priority()
-{
-  
-    printf("Viewing tasks by priority...\n");
-}
-
-// Function to view tasks sorted by date
-void view_tasks_by_date() {
-  
-    printf("Viewing tasks by date...\n");
-}
-
-
-// Function to print the main menu
 void print_menu()
 {
     print_header("TO-DO LIST MANAGER");
