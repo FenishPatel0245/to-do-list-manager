@@ -141,6 +141,7 @@ void view_tasks_by_priority()
 }
 
 
+
 // Function to get a valid integer input from the user within a specific range
 int get_integer_input(const char* prompt, int min, int max)
 {
@@ -411,7 +412,7 @@ void view_tasks_by_priority()
     printf("Viewing tasks by priority...\n");
 }
 
-// Function to view tasks sorted by date
+// Function to view task sorted by date
 void view_tasks_by_date() {
   
     printf("Viewing tasks by date...\n");
