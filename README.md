@@ -1,5 +1,38 @@
 # to-do-list-manager
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Group Members and Division of Labour
+
+**Fenish Patel**  
+- Implemented task sorting features (by date and priority)  
+- Developed file saving and loading functions  
+- Added input validation and unit testing functions
+
+**Darshita**  
+- Designed task structure with fields (description, date, time, priority, completion status)  
+- Implemented add and display task features  
+- Integrated task storage logic
+
+**Pratham**  
+- Created reusable utility functions (input validation, menu handling)  
+- Wrote core task management functions (search, delete, mark complete)  
+- Worked on user interface and menu system
+
+We collaborated on design and logic, tested features together, and ensured code readability and modularity.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Testing
+
+We tested the application manually by:
+- Adding tasks with various valid and invalid inputs
+- Validating date and time formats (e.g., YYYY-MM-DD, HH:MM)
+- Ensuring data is correctly saved to and loaded from `tasks.txt`
+- Verifying functionality of all menu options
+- Checking sort order for both date and priority views
+
+We also used print statements and test tasks to verify edge cases and input validation.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Name:Fenish/Date:2025-03-23 : I added main files to work on it.
 
