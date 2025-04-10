@@ -1,3 +1,12 @@
+//Source file - main.c
+
+//prog71990 - W25 - group project - Group-8 ( Darshita, Pratham, Fenish)
+
+/*
+This is the main file of the To-Do List Manager application. It displays a menu and lets the user interact with the task list
+by choosing options like adding, viewing, sorting, completing, searching, or deleting tasks.
+*/
+
 #include <stdio.h>
 #include "todolist.h"
 

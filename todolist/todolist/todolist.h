@@ -1,3 +1,12 @@
+//header file - todolist.h
+
+//prog71990 - W25 - group project - Group-8 ( Darshita, Pratham, Fenish)
+
+/*
+Description: This is the header file for a To-Do List Application. It provides all necessary function
+declarations and the task structure to support features like adding, viewing, sorting, and managing tasks.
+*/
+
 #ifndef TODOLIST_H
 #define TODOLIST_H
 

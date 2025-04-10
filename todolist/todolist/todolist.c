@@ -1,3 +1,12 @@
+//Source file - todolist.c
+
+//prog71990 - W25 - group project - Group-8 ( Darshita, Pratham, Fenish)
+
+/*
+This C file is the core logic for a To-Do List Manager created by Group-8 (Darshita, Pratham, Fenish). It allows users to
+add, view, sort, search, mark, and delete tasks with details like description, date, time, priority, and completion status.
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
