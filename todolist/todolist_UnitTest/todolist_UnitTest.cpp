@@ -71,6 +71,22 @@ namespace todolistUnitTest
 			Assert::AreEqual("Mid priority", tasks[1].description);
 			Assert::AreEqual("Low priority", tasks[2].description);
 		}
+		TEST_METHOD(SortTasksByDate_CheckOrder)
+		{
+			Task testTasks[3] = {
+				{"May", "2025-05-01", "10:00", 3, 0},
+				{"April", "2025-04-01", "11:00", 5, 0},
+				{"June", "2025-06-01", "12:00", 1, 0}
+			};
+			memcpy(tasks, testTasks, sizeof(testTasks));
+			taskCount = 3;
+
+			sort_tasks_by_date();
+
+			Assert::AreEqual("April", tasks[0].description);
+			Assert::AreEqual("May", tasks[1].description);
+			Assert::AreEqual("June", tasks[2].description);
+		}
 
 	};
 }
