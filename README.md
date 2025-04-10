@@ -1,19 +1,26 @@
 # to-do-list-manager
+
+ Project Overview
+This is a terminal-based To-Do List Manager built in C for the PROG71990W25 group assignment. It allows users to manage tasks efficiently through a user-friendly menu system. Key features include adding, updating, viewing, deleting, and searching tasks. The program also supports saving and loading tasks from a file, along with sorting by date or priority.
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Group Members and Division of Labour
+Group Members and Division of Labour
 
-**Fenish Patel**  
+ Fenish Patel
+ 
 - Implemented task sorting features (by date and priority)  
 - Developed file saving and loading functions  
 - Added input validation and unit testing functions
 
-**Darshita**  
+ Darshita 
+ 
 - Designed task structure with fields (description, date, time, priority, completion status)  
 - Implemented add and display task features  
 - Integrated task storage logic
 
-**Pratham**  
+ Pratham
+ 
 - Created reusable utility functions (input validation, menu handling)  
 - Wrote core task management functions (search, delete, mark complete)  
 - Worked on user interface and menu system
@@ -21,7 +28,7 @@
 We collaborated on design and logic, tested features together, and ensured code readability and modularity.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## Testing
+ Testing
 
 We tested the application manually by:
 - Adding tasks with various valid and invalid inputs
