@@ -288,6 +288,16 @@ Unit test Case 3 : Added unit test ValidateTime_Valid() to confirm that validate
 - Confirms standard valid times like 09:45 and 23:00
 - Ensures the function properly recognizes valid input within the expected range.
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Pratham/Date:2025-04-10 : 
+
+Unit test Case 4 : Added unit test ValidateTime_Invalid() to ensure validate_time() rejects incorrect time formats and values.
+
+- Catches missing leading zeros, wrong separators, and empty strings
+- Validates out-of-range hours (e.g., 24:00) and minutes (e.g., 12:60)
+- Ensures time inputs strictly follow HH:MM format
+- Strengthens robustness of time validation by covering diverse edge and formatting errors.
 
 
 
