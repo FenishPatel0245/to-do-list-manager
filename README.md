@@ -228,7 +228,7 @@ I have added the following things in todolist.c (source file)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Name:Feish/Date:2025-04-09 : 
+Name:Fenish/Date:2025-04-09 : 
 
 Solving errors
 
@@ -246,6 +246,12 @@ Added validate_time() function to validate time inputs using 24-hour format.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Name:Feish/Date:2025-04-09 : 
+Name:Fenish/Date:2025-04-09 : 
 
 Implemented view_tasks_by_priority() function to display tasks sorted by priority.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Name:Fenish/Date:2025-04-10 : 
+
+Setup the todolist_UnitTest.
