@@ -41,5 +41,20 @@ namespace todolistUnitTest
 			Assert::IsTrue(validate_time("00:00"));
 			Assert::IsTrue(validate_time("23:59"));
 		}
+
+		TEST_METHOD(ValidateTime_Invalid)
+		{
+			Assert::IsFalse(validate_time("9:45"));
+			Assert::IsFalse(validate_time("0945"));
+			Assert::IsFalse(validate_time("09-45"));
+			Assert::IsFalse(validate_time("24:00"));
+			Assert::IsFalse(validate_time("12:60"));
+			Assert::IsFalse(validate_time("3:5"));
+			Assert::IsFalse(validate_time("12:5"));
+			Assert::IsFalse(validate_time("1:45"));
+			Assert::IsFalse(validate_time(""));
+		}
+
+
 	};
 }
