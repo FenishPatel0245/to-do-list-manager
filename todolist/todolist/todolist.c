@@ -111,25 +111,6 @@ int validate_time(const char* time)
     return 1;
 }
 
-void view_tasks_by_priority()
-{
-    if (taskCount == 0)
-    {
-        printf("No tasks available.\n");
-        return;
-    }
-
-    printf("\nSorting tasks by priority...\n");
-
-    sort_tasks_by_priority();
-
-    printf("Displaying tasks by priority:\n");
-
-    view_tasks();
-}
-
-
-// Function to get a valid integer input from the user within a specific range
 int get_integer_input(const char* prompt, int min, int max)
 {
     int value;
@@ -401,19 +382,6 @@ void delete_task()
     save_tasks();
 
     printf("Task deleted successfully!\n");
-}
-
-// Function to view tasks sorted by priority
-void view_tasks_by_priority()
-{
-  
-    printf("Viewing tasks by priority...\n");
-}
-
-// Function to view tasks sorted by date
-void view_tasks_by_date() {
-  
-    printf("Viewing tasks by date...\n");
 }
 
 void print_menu()
